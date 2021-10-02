@@ -1,4 +1,3 @@
-import flask
 from flask import Flask, request, session, redirect, url_for, render_template, flash
 import psycopg2
 import json
@@ -20,8 +19,6 @@ app = Flask(__name__)
 app.config.from_object('config.Config')
 app.secret_key = app.config['SECRET_KEY']
 pg_con = psycopg2.connect(dbname=app.config['DB_NAME'], user=app.config['DB_USER'], password=app.config['DB_PASS'])
-
-
 
 def sendemail(recipient, subject, code):
   SENDER = 'administrator@ameyanori.link'  
@@ -102,7 +99,6 @@ def login():
         password = request.form['password']
         print(password)
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
-        # Fetch one record and return result
         account = cursor.fetchone()
         if account:
             password_rs = account['password']
