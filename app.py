@@ -129,7 +129,6 @@ def login():
         else:
             # Account doesnt exist or username/password incorrect
             flash('Incorrect username/password')
- 
     return render_template('login.html')
 
 
