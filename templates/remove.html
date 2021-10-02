@@ -1,0 +1,36 @@
+{% extends 'layout.html' %}
+
+{% block title %}Home{% endblock %}
+
+{% block content %}
+
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.4.0/css/bootstrap.min.css" integrity="sha256-/ykJw/wDxMa0AQhHDYfuMEwVb4JHMx9h4jD4XvHqVzU=" crossorigin="anonymous" />
+</head>
+
+<div class="row">
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-8 col-lg-7">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+
+                                    <form method="post">
+                                        <label class="text-primary" class="font-weight-bold"> PERSON CHECKOUT: <br> </label>
+                                        <br>
+                                        <label for="outid"> PERSON ID: </label>
+                                        <input type="number" name="outid" id="outid">
+                                        <input class="btn btn-danger" type="submit">
+                                    </form>
+
+                                    </div>
+                                </div>
+</html>
+
+{% endblock %}
+
+
+
+
