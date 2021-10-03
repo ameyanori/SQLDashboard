@@ -20,7 +20,7 @@ app.config.from_object('config.Config')
 app.secret_key = app.config['SECRET_KEY']
 pg_con = psycopg2.connect(dbname=app.config['DB_NAME'], user=app.config['DB_USER'], password=app.config['DB_PASS'])
 
-#email verificatio SMTP setup
+#email verification SMTP setup
 def sendemail(recipient, subject, code):
   SENDER = 'administrator@ameyanori.link'  
   SENDERNAME = 'System @ ameyanori.link'
