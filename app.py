@@ -1,4 +1,3 @@
-import flask
 from flask import Flask, request, session, redirect, url_for, render_template, flash
 import psycopg2
 import json
