@@ -21,7 +21,7 @@ app.config.from_object('config.Config')
 app.secret_key = app.config['SECRET_KEY']
 pg_con = psycopg2.connect(dbname=app.config['DB_NAME'], user=app.config['DB_USER'], password=app.config['DB_PASS'])
 
-#email verification SMTP setup
+#email verification SMTP setup with AWS
 def sendemail(recipient, subject, code, name):
   SENDER = 'administrator@ameyanori.link'  
   SENDERNAME = 'System @ ameyanori.link'
