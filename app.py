@@ -146,7 +146,7 @@ def admin():
             type = request.form['type']
             cursor.execute('UPDATE users SET fullname = %s, username = %s, whitelist = %s, type = %s WHERE id = %s', (fullname, username, whitelist, type, id,))
             pg_con.commit()
-        elif request.method == 'POST' and 'delete' in request.form":
+        elif request.method == 'POST' and 'delete' in request.form:
             id = request.form['outid']
             cursor.execute('DELETE FROM USERS WHERE ID = %s', (id,))
             pg_con.commit()
