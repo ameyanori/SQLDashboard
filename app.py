@@ -136,9 +136,7 @@ def login():
 def admin():
     if session['loggedin'] == True and session['type'] == 'admin':
         cursor = pg_con.cursor(cursor_factory=psycopg2.extras.DictCursor)
-        print(request.form)
         if request.method == 'POST' and 'name' in request.form:
-            print(request)
             id = request.form['id']
             fullname = request.form['name']
             username = request.form['username']
@@ -147,6 +145,7 @@ def admin():
             cursor.execute('UPDATE users SET fullname = %s, username = %s, whitelist = %s, type = %s WHERE id = %s', (fullname, username, whitelist, type, id,))
             pg_con.commit()
         elif request.method == 'POST' and 'delete' in request.form:
+            print(request.form)
             id = request.form['outid']
             cursor.execute('DELETE FROM USERS WHERE ID = %s', (id,))
             pg_con.commit()
