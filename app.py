@@ -137,7 +137,7 @@ def admin():
     if session['loggedin'] == True and session['type'] == 'admin':
         cursor = pg_con.cursor(cursor_factory=psycopg2.extras.DictCursor)
         if request.method == 'POST' and 'name' in request.form:
-            print(request.form)
+            print(request)
             id = request.form['id']
             fullname = request.form['name']
             username = request.form['username']
