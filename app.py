@@ -39,13 +39,13 @@ def sendemail(recipient, subject, code, name):
 			<h1 style="color:#222222;font-weight:bold;font-size:24px;margin:10px 0 16px 0"><span class="il">Verify</span> your email</h1>
 			<p style="margin-bottom:16px;font-size:16px">
                                 Hello, {name},
-				Thank you for registering on ameyanori.link!<br>In order to verify this email to your account, <span class="il">verify</span> you must complete this verification step.<br><br>Your <span class="il">verification</span> <span class="il">link</span> is: </p><p>https://jjdpc.ameyanori.link/verify?token={code}</p><br>
+				Thank you for registering on ameyanori.link!<br>In order to verify this email to your account, <span class="il">verify</span> you must complete this verification step.<br><br>Your <span class="il">verification</span> <span class="il">link</span> is: </p><p>https://dashboard.ameyanori.link/verify?token={code}</p><br>
 			<p></p>
       <p style="margin-bottom:16px;font-size:16px">
         Alternatively, you can click on this button:
       </p>
       <p></p>
-<a href="https://jjdpc.ameyanori.link/verify?token={code}" style="font-weight:bold;padding:12px 24px;background:#fba342;color:white;border-radius:4px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://jjdpc.ameyanori.link/verify?token={code}"><span class="il">VERIFY</span> EMAIL</a>  
+<a href="https://dashboard.ameyanori.link/verify?token={code}" style="font-weight:bold;padding:12px 24px;background:#fba342;color:white;border-radius:4px" target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://dashboard.ameyanori.link/verify?token={code}"><span class="il">VERIFY</span> EMAIL</a>  
 			<hr style="background-color:#fbc241;height:2px;border:0;margin:24px 0">
 
   </html>
