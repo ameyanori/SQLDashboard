@@ -21,7 +21,7 @@ app.secret_key = app.config['SECRET_KEY']
 pg_con = psycopg2.connect(dbname=app.config['DB_NAME'], user=app.config['DB_USER'], password=app.config['DB_PASS'])
 
 #email verification SMTP setup
-def sendemail(recipient, subject, code):
+def sendemail(recipient, subject, code, name):
   SENDER = 'administrator@ameyanori.link'  
   SENDERNAME = 'System @ ameyanori.link'
   RECIPIENT  = recipient
@@ -37,6 +37,7 @@ def sendemail(recipient, subject, code):
   <td style="padding:45px" align="left" colspan="2">
 			<h1 style="color:#222222;font-weight:bold;font-size:24px;margin:10px 0 16px 0"><span class="il">Verify</span> your email</h1>
 			<p style="margin-bottom:16px;font-size:16px">
+                                Hello, {name},
 				Thank you for registering on ameyanori.link!<br>In order to verify this email to your account, <span class="il">verify</span> you must complete this verification step.<br><br>Your <span class="il">verification</span> <span class="il">link</span> is: </p><p>https://jjdpc.ameyanori.link/verify?token={code}</p><br>
 			<p></p>
       <p style="margin-bottom:16px;font-size:16px">
@@ -48,7 +49,6 @@ def sendemail(recipient, subject, code):
 
   </html>
               """
-              
   msg = MIMEMultipart('alternative')
   msg['Subject'] = SUBJECT
   msg['From'] = email.utils.formataddr((SENDERNAME, SENDER))
@@ -185,7 +185,7 @@ def register():
             pg_con.commit()
             flash('You have successfully registered! For security purposes, you need to verify the email you provided, please check your email, and click the link attached.')
             code = get_random_string(60)
-            sendemail(email, "Verification at ameyanori.link", code)
+            sendemail(email, "Verification at ameyanori.link", code, fullname)
             cursor.execute("UPDATE USERS SET email_code = %s WHERE email = %s", (code, email))
             pg_con.commit()
     elif request.method == 'POST':
