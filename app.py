@@ -64,6 +64,14 @@ def sendemail(recipient, subject, code, name):
   server.sendmail(SENDER, RECIPIENT, msg.as_string())
   server.close()
 
+
+def get_acc():
+    cursor = pg_con.cursor(cursor_factory=psycopg2.extras.DictCursor)
+    cursor.execute('SELECT * FROM users WHERE id = %s', [session['id']])
+    account = cursor.fetchone()
+    return account
+
+
 @app.route('/verify')
 def verify():
     token = request.args.get('token')
@@ -78,7 +86,7 @@ def home():
     # Check if user is loggedin
     if 'loggedin' in session:
         # User is loggedin show them the home page
-        return render_template('home.html', username=session['username'])
+        return render_template('home.html', username=session['username'], account=get_acc())
     # User is not loggedin redirect to login page
     return redirect(url_for('login'))
 
@@ -150,7 +158,7 @@ def admin():
             pg_con.commit()
         cursor.execute('SELECT id, fullname, username, email, whitelist, type FROM USERS')
         data = cursor.fetchall()
-        return render_template('admin.html', data = data, headings=("ID", "Full Name", "Username", "Email", "Whitelisted", "Type"))
+        return render_template('admin.html', data = data, headings=("ID", "Full Name", "Username", "Email", "Whitelisted", "Type"), account=get_acc())
     else:
         return render_template('404.html')
 
@@ -210,7 +218,7 @@ def add():
          pg_con.commit()
          cur.close()
          return redirect(url_for('table'))
-    return render_template('add.html')
+    return render_template('add.html', account=get_acc())
 
 
 @app.route("/remove", methods=["GET", "POST"])
@@ -225,7 +233,7 @@ def remove():
         pg_con.commit()
         cur.close()
         return redirect(url_for('table'))
-    return render_template('remove.html')
+    return render_template('remove.html', account=get_acc())
 
 @app.route("/table",methods=["GET","POST"])
 def table():
@@ -236,7 +244,7 @@ def table():
     data = cur.fetchall()
     pg_con.commit()
     cur.close()
-    return render_template('table.html', data=data, headings=("Number", "Name", "Checker"))
+    return render_template('table.html', data=data, headings=("Number", "Name", "Checker"), account=get_acc())
 
 @app.route('/profile')
 def profile(): 
