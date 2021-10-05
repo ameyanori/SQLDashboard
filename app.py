@@ -107,12 +107,10 @@ def login():
     if request.method == 'POST' and 'username' in request.form and 'password' in request.form:
         username = request.form['username']
         password = request.form['password']
-        print(password)
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
         account = cursor.fetchone()
         if account:
             password_rs = account['password']
-            print(password_rs)
             # If account exists in users table in out database
             if check_password_hash(password_rs, password):
                 # Create session data, we can access this data in other routes
@@ -180,7 +178,6 @@ def register():
         _hashed_password = generate_password_hash(password)
         cursor.execute('SELECT * FROM users WHERE username = %s', (username,))
         account = cursor.fetchone()
-        print(account)
         # If account exists show error and validation checks
         if account:
             flash('Account already exists!')
@@ -228,7 +225,6 @@ def remove():
     if request.method == "POST":
         num = int(request.form["outid"])
         cur = pg_con.cursor()
-        print(num)
         cur.execute("DELETE FROM entries WHERE entry_num = %s", (num,))
         pg_con.commit()
         cur.close()
