@@ -1,7 +1,4 @@
 {% extends 'layout.html' %}
-  {% if account['type'] == "admin" %}
-  <a class="py-2 d-none d-md-inline-block" href="{{ url_for('admin') }}"><i class="fas fa-user-shield"></i> Admin</a>
-  {% endif %}
   
 {% block title %}Profile{% endblock %}
   
