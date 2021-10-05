@@ -24,7 +24,7 @@ pg_con = psycopg2.connect(dbname=app.config['DB_NAME'], user=app.config['DB_USER
 #email verification SMTP setup with AWS
 def sendemail(recipient, subject, code, name):
   """Send an email via SMTP using administrator@ameyanori.link."""
-  SENDER = 'administrator@ameyanori.link'  
+  SENDER = 'system@ameyanori.link'  
   SENDERNAME = 'System @ ameyanori.link'
   RECIPIENT  = recipient
   USERNAME_SMTP = app.config['SMTP_USER']
