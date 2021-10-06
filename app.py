@@ -210,9 +210,11 @@ def add():
     if request.method == "POST":
          name=request.form["name"]
          phone=request.form["phone"]
-         sro=request.form['']
+         offense=request.form['offense']
+         penal=request.form['penal_code']
+         desc=request.form['short_description']
          cur = pg_con.cursor()
-         cur.execute("INSERT INTO entries (entry_name, entry_num, entry_sro) VALUES (%s, %s, %s)", (name, num, sro))
+         cur.execute("INSERT INTO entries (fullname, offense_name, penal_code, description, phone_number) VALUES (%s, %s, %s, %s, $)", (name, offense, penal, desc, phone))
          pg_con.commit()
          cur.close()
          return redirect(url_for('table'))
