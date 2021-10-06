@@ -209,8 +209,8 @@ def add():
         return redirect(url_for('login'))
     if request.method == "POST":
          name=request.form["name"]
-         num=request.form["num"]
-         sro=request.form['sro']
+         phone=request.form["phone"]
+         sro=request.form['']
          cur = pg_con.cursor()
          cur.execute("INSERT INTO entries (entry_name, entry_num, entry_sro) VALUES (%s, %s, %s)", (name, num, sro))
          pg_con.commit()
