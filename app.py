@@ -208,6 +208,7 @@ def add():
     if 'loggedin' not in session:
         return redirect(url_for('login'))
     if request.method == "POST":
+         print(request.form)
          name=request.form["name"]
          phone=request.form["phone"]
          offense=request.form['offense']
@@ -262,8 +263,8 @@ def page_not_found(e):
     # note that we set the 404 status explicitly
     return render_template('404.html', account=get_acc()), 404
 
-@app.errorhandler(500)
-def internal(e):
+#@app.errorhandler(500)
+#def internal(e):
     return render_template('500.html', account=get_acc()), 500
 
 
