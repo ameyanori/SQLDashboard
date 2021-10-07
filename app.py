@@ -228,7 +228,7 @@ def remove():
     if request.method == "POST":
         num = int(request.form["outid"])
         cur = pg_con.cursor()
-        cur.execute("DELETE FROM entries WHERE entry_num = %s", (num,))
+        cur.execute("DELETE FROM entries WHERE id = %s", (num,))
         pg_con.commit()
         cur.close()
         return redirect(url_for('table'))
@@ -243,7 +243,7 @@ def table():
     data = cur.fetchall()
     pg_con.commit()
     cur.close()
-    return render_template('table.html', data=data, headings=("Number", "Name", "Checker"), account=get_acc())
+    return render_template('table.html', data=data, headings=("ID", "Offender Name", "Offense Name", "Penal Code Violation", "Short Description", "Phone Number"), account=get_acc())
 
 @app.route('/profile')
 def profile(): 
