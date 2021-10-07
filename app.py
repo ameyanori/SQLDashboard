@@ -214,6 +214,7 @@ def add():
          offense=request.form['offense']
          penal=request.form['penal_code']
          desc=request.form['short_description']
+         print(desc)
          cur = pg_con.cursor()
          cur.execute("INSERT INTO entries (fullname, offense_name, penal_code, description, phone_number) VALUES (%s, %s, %s, %s, $)", (name, offense, penal, desc, phone))
          pg_con.commit()
