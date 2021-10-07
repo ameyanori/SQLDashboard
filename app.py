@@ -213,10 +213,10 @@ def add():
          phone=request.form["phone"]
          offense=request.form['offense']
          penal=request.form['penal_code']
-         desc=request.form['short_description']
+         desc=request.form['paragraph_text']
          print(desc)
          cur = pg_con.cursor()
-         cur.execute("INSERT INTO entries (fullname, offense_name, penal_code, description, phone_number) VALUES (%s, %s, %s, %s, $)", (name, offense, penal, desc, phone))
+         cur.execute("INSERT INTO entries (fullname, offense_name, penal_code, description, phone_number) VALUES (%s, %s, %s, %s, %s)", (name, offense, penal, desc, phone))
          pg_con.commit()
          cur.close()
          return redirect(url_for('table'))
