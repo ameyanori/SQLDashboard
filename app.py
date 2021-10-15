@@ -11,6 +11,7 @@ import re
 import string
 import random
 import smtplib  
+from datetime import datetime
 import email.utils
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
@@ -215,8 +216,10 @@ def add():
          penal=request.form['penal_code']
          desc=request.form['paragraph_text']
          print(desc)
+         now = datetime.now()
+         date_time = now.strftime("%m/%d/%Y %H:%M:%S")
          cur = pg_con.cursor()
-         cur.execute("INSERT INTO entries (fullname, offense_name, penal_code, description, phone_number) VALUES (%s, %s, %s, %s, %s)", (name, offense, penal, desc, phone))
+         cur.execute("INSERT INTO entries (fullname, offense_name, penal_code, description, phone_number, timestamp) VALUES (%s, %s, %s, %s, %s, %s)", (name, offense, penal, desc, phone, date_time))
          pg_con.commit()
          cur.close()
          return redirect(url_for('table'))
@@ -245,7 +248,7 @@ def table():
     data = cur.fetchall()
     pg_con.commit()
     cur.close()
-    return render_template('table.html', data=data, headings=("ID", "Offender Name", "Offense Name", "Penal Code Violation", "Short Description", "Phone Number"), account=get_acc())
+    return render_template('table.html', data=data, headings=("ID", "Offender Name", "Offense Name", "Penal Code Violation", "Short Description", "Phone Number", "Timestamp"), account=get_acc())
 
 @app.route('/profile')
 def profile(): 
